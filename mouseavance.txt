@@ -1,0 +1,46 @@
+// mouse, by lmcapacho
+import processing.serial.*;
+
+Maze maze;
+
+// El puerto serial
+//Serial myPort;
+
+
+//con void setup se realizan acciones una sola vez
+void setup() {
+
+  // Tamaño de la ventana de un tamaño por pixeles de 400 por 400
+  size(400, 400);
+
+  // Tamaño fuente 
+  textSize(20);
+  // Color de fondo de la ventana para este caso es de color negro
+  background(51);
+  // Alineación del texto el cual estara situado en todo el centro 
+  textAlign(CENTER, CENTER);
+
+  // Crea una nueva cuadrícula de 6 x 6   
+  maze = new Maze(6);
+  // Abre el puerto serial con velocidad de 9600 baudios
+  //myPort = new Serial(this, "/dev/ttyUSB1", 9600);
+  //myPort.clear();
+  
+  // Ejemplo: Coloca pared en norte y este de la celda 2,2 
+  maze.setWalls(2,2, Maze.NORTH | Maze.EAST );
+}
+
+//con void draw se repetiran las acciones que esten dentro de ellas de manera continua
+void draw() { 
+  maze.display();
+  
+  /*while (myPort.available() > 0) {
+    byte[] inBuffer = new byte[11];
+    if( myPort.readBytesUntil('\n', inBuffer) > 0){
+      String myString = new String(inBuffer);
+      print(int(myString.substring(0,3)));
+      print(int(myString.substring(3,6)));
+      println(int(myString.substring(6,9)));
+    }  
+  }*/
+}
